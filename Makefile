@@ -1,73 +1,117 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/12/22 19:11:15 by anfichet          #+#    #+#              #
+#    Updated: 2023/12/22 19:11:15 by anfichet         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME=libft.a
 
+#------------------------------------------------------------------------------#
+# 							INGREDIENTS										   #
+#------------------------------------------------------------------------------#
+
+SRCS_DIR= ./SRCS
+OBJS_DIR= ./OBJS
+
 SRCS=\
-		ft_atoi.c \
-		ft_isalnum.c \
-		ft_isalpha.c \
-		ft_isascii.c \
-		ft_isprint.c \
-		ft_isdigit.c \
-		ft_strchr.c \
-		ft_strlen.c \
-		ft_tolower.c \
-		ft_toupper.c \
-		ft_strncmp.c \
-		ft_strrchr.c \
-		ft_strnstr.c \
-		ft_strlcpy.c \
-		ft_putchar_fd.c \
-		ft_putstr_fd.c \
-		ft_strlcat.c \
-		ft_memset.c \
-		ft_bzero.c \
-		ft_memcpy.c \
-		ft_memchr.c \
-		ft_memcmp.c \
-		ft_memmove.c \
-		ft_putendl_fd.c \
-		ft_calloc.c \
-		ft_putnbr_fd.c \
-		ft_strdup.c \
-		ft_substr.c \
-		ft_strjoin.c \
-		ft_strtrim.c \
-		ft_split.c \
-		ft_itoa.c \
-		ft_strmapi.c \
-		ft_striteri.c \
+		SRCS/char/ft_isalnum.c \
+		SRCS/char/ft_isalpha.c \
+		SRCS/char/ft_isascii.c \
+		SRCS/char/ft_isdigit.c \
+		SRCS/char/ft_isprint.c \
+		SRCS/char/ft_tolower.c \
+		SRCS/char/ft_toupper.c \
+		SRCS/ft_atoi.c \
+		SRCS/ft_itoa.c \
+		SRCS/ft_putchar_fd.c \
+		SRCS/ft_putendl_fd.c \
+		SRCS/ft_putnbr_fd.c \
+		SRCS/ft_putstr_fd.c \
+		SRCS/ft_split.c \
+		SRCS/mem/ft_bzero.c \
+		SRCS/mem/ft_calloc.c \
+		SRCS/mem/ft_memchr.c \
+		SRCS/mem/ft_memcmp.c \
+		SRCS/mem/ft_memcpy.c \
+		SRCS/mem/ft_memmove.c \
+		SRCS/mem/ft_memset.c \
+		SRCS/str/ft_strchr.c \
+		SRCS/str/ft_strdup.c \
+		SRCS/str/ft_striteri.c \
+		SRCS/str/ft_strjoin.c \
+		SRCS/str/ft_strlcat.c \
+		SRCS/str/ft_strlcpy.c \
+		SRCS/str/ft_strlen.c \
+		SRCS/str/ft_strmapi.c \
+		SRCS/str/ft_strncmp.c \
+		SRCS/str/ft_strnstr.c \
+		SRCS/str/ft_strrchr.c \
+		SRCS/str/ft_strtrim.c \
+		SRCS/str/ft_substr.c \
+        SRCS/lst/ft_lstadd_back_bonus.c \
+        SRCS/lst/ft_lstadd_front_bonus.c \
+        SRCS/lst/ft_lstclear_bonus.c \
+        SRCS/lst/ft_lstdelone_bonus.c \
+        SRCS/lst/ft_lstiter_bonus.c \
+        SRCS/lst/ft_lstlast_bonus.c \
+        SRCS/lst/ft_lstmap_bonus.c \
+		SRCS/lst/ft_lstnew_bonus.c \
+        SRCS/lst/ft_lstsize_bonus.c \
+		$(addprefix SRCS/get_next_line/, $(SRCS_GNL)) \
+		$(addprefix SRCS/ft_printf/, $(SRCS_PRINTF)) \
 
-SRCSBONUS=\
-		ft_lstnew_bonus.c \
-		ft_lstadd_front_bonus.c \
-		ft_lstsize_bonus.c \
-		ft_lstlast_bonus.c \
-		ft_lstadd_back_bonus.c \
-		ft_lstdelone_bonus.c \
-		ft_lstclear_bonus.c \
-		ft_lstiter_bonus.c \
-		ft_lstmap_bonus.c \
+SRCS_GNL=\
+		get_next_line.c \
+		get_next_line_utils.c \
 
-OBJS=$(SRCS:%.c=%.o)
+SRCS_PRINTF=\
+		ft_printf.c \
+		ft_printf_putnbr.c \
+		ft_printf_putstr.c \
 
-OBJSBONUS=$(SRCSBONUS:%.c=%.o)
+SRCS:= $(SRCS:%=$(SRCS_DIR)/%)
+
+OBJS=$(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
+
+INCS= ./INCS
+
+DEPS= $(OBJS:.o=.d)
 
 CC= cc
 
-CFLAGS= -Werror -Wextra -Wall
+CFLAGS= -Werror -Wextra -Wall -MMD -MP
+
+#------------------------------------------------------------------------------#
+# 							USTENSILS									       #
+#------------------------------------------------------------------------------#
 
 RM= rm -rf
 
+DIR_DUP = mkdir -p $(@D)
+
+#------------------------------------------------------------------------------#
+# 							RECIPE											   #
+#------------------------------------------------------------------------------#
 
 all:$(NAME)
 
-$(NAME): $(OBJS)
+-include $(DEPS)
+
+$(NAME): $(OBJS) $(INCS)
 	ar rcs $(NAME) $(OBJS)
 
-%.o: %.c libft.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+$(OBJS_DIR)/%.o: %.c
+	@$(DIR_DUP)
+	$(CC) $(CFLAGS) -I$(INCS) -c -o $@ $<
 
 clean:
-	$(RM) $(OBJS) $(OBJSBONUS)
+	$(RM) $(OBJS_DIR)
 
 fclean:clean
 	$(RM) $(NAME)
@@ -75,7 +119,4 @@ fclean:clean
 
 re:fclean all
 
-bonus: 
-	$(MAKE) SRCS="$(SRCS) $(SRCSBONUS)"
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
