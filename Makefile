@@ -19,61 +19,7 @@ NAME=libft.a
 SRCS_DIR= ./SRCS
 OBJS_DIR= ./OBJS
 
-SRCS=\
-		SRCS/char/ft_isalnum.c \
-		SRCS/char/ft_isalpha.c \
-		SRCS/char/ft_isascii.c \
-		SRCS/char/ft_isdigit.c \
-		SRCS/char/ft_isprint.c \
-		SRCS/char/ft_tolower.c \
-		SRCS/char/ft_toupper.c \
-		SRCS/ft_atoi.c \
-		SRCS/ft_itoa.c \
-		SRCS/ft_putchar_fd.c \
-		SRCS/ft_putendl_fd.c \
-		SRCS/ft_putnbr_fd.c \
-		SRCS/ft_putstr_fd.c \
-		SRCS/ft_split.c \
-		SRCS/mem/ft_bzero.c \
-		SRCS/mem/ft_calloc.c \
-		SRCS/mem/ft_memchr.c \
-		SRCS/mem/ft_memcmp.c \
-		SRCS/mem/ft_memcpy.c \
-		SRCS/mem/ft_memmove.c \
-		SRCS/mem/ft_memset.c \
-		SRCS/str/ft_strchr.c \
-		SRCS/str/ft_strdup.c \
-		SRCS/str/ft_striteri.c \
-		SRCS/str/ft_strjoin.c \
-		SRCS/str/ft_strlcat.c \
-		SRCS/str/ft_strlcpy.c \
-		SRCS/str/ft_strlen.c \
-		SRCS/str/ft_strmapi.c \
-		SRCS/str/ft_strncmp.c \
-		SRCS/str/ft_strnstr.c \
-		SRCS/str/ft_strrchr.c \
-		SRCS/str/ft_strtrim.c \
-		SRCS/str/ft_substr.c \
-        SRCS/lst/ft_lstadd_back_bonus.c \
-        SRCS/lst/ft_lstadd_front_bonus.c \
-        SRCS/lst/ft_lstclear_bonus.c \
-        SRCS/lst/ft_lstdelone_bonus.c \
-        SRCS/lst/ft_lstiter_bonus.c \
-        SRCS/lst/ft_lstlast_bonus.c \
-        SRCS/lst/ft_lstmap_bonus.c \
-		SRCS/lst/ft_lstnew_bonus.c \
-        SRCS/lst/ft_lstsize_bonus.c \
-		$(addprefix SRCS/get_next_line/, $(SRCS_GNL)) \
-		$(addprefix SRCS/ft_printf/, $(SRCS_PRINTF)) \
-
-SRCS_GNL=\
-		get_next_line.c \
-		get_next_line_utils.c \
-
-SRCS_PRINTF=\
-		ft_printf.c \
-		ft_printf_putnbr.c \
-		ft_printf_putstr.c \
+include source.mk
 
 SRCS:= $(SRCS:%=$(SRCS_DIR)/%)
 
