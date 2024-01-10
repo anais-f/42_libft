@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_printf(const char *str, ...)
 {
@@ -55,9 +55,9 @@ void	ft_print(int *addr_count, const char *str, size_t *addr_i, va_list arg)
 void	ft_print_format(const char specifier, va_list arg, int *addr_count)
 {
 	if (specifier == 'c')
-		ft_putchar(va_arg(arg, int), addr_count);
+		ft_putchar_pf(va_arg(arg, int), addr_count);
 	else if (specifier == 's')
-		ft_putstr(va_arg(arg, char *), addr_count);
+		ft_putstr_pf(va_arg(arg, char *), addr_count);
 	else if (specifier == 'd' || specifier == 'i')
 		ft_putnbr_base(va_arg(arg, int), BASE10, addr_count);
 	else if (specifier == 'u')
@@ -67,7 +67,7 @@ void	ft_print_format(const char specifier, va_list arg, int *addr_count)
 	else if (specifier == 'X')
 		ft_unsigned_putnbr(va_arg(arg, unsigned int), BASE16_UPPER, addr_count);
 	else if (specifier == '%')
-		ft_putchar('%', addr_count);
+		ft_putchar_pf('%', addr_count);
 	else if (specifier == 'p')
 		ft_put_address(va_arg(arg, unsigned long int), addr_count);
 }
@@ -115,5 +115,5 @@ void	check_percent(const char *str, int *addr_count, size_t *addr_i)
 		return ;
 	}
 	if (str[*addr_i] == '%')
-    	ft_putchar('%', addr_count);
+		ft_putchar_pf('%', addr_count);
 }

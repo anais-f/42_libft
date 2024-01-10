@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*get_next_line(int fd)
 {
@@ -28,7 +28,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (reading_line(fd, stash, &next_line, &n) == -1)
 		return (NULL);
-	ft_memmove(stash, &stash[n], ft_strlen(&stash[n], '\0') + 1);
+	ft_memmove(stash, &stash[n], ft_strlen_gnl(&stash[n], '\0') + 1);
 	return (next_line);
 }
 
@@ -40,8 +40,8 @@ char	*get_empty_line(char *stash, size_t *n)
 	temp = ft_strdup("");
 	if (!temp)
 		return (NULL);
-	next_line = ft_strjoin(temp, stash, n);
-	ft_memmove(stash, (stash + *n), ft_strlen((stash + *n), '\0') + 1);
+	next_line = ft_strjoin_gnl(temp, stash, n);
+	ft_memmove(stash, (stash + *n), ft_strlen_gnl((stash + *n), '\0') + 1);
 	return (next_line);
 }
 
@@ -60,7 +60,7 @@ int	reading_line(int fd, char *stash, char **next_line, size_t *n)
 			return (-1);
 		}
 		stash[size_read] = '\0';
-		*next_line = ft_strjoin(*next_line, stash, n);
+		*next_line = ft_strjoin_gnl(*next_line, stash, n);
 		if (*next_line == 0)
 			return (-1);
 	}

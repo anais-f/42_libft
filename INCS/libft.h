@@ -17,6 +17,9 @@
 # include <stdlib.h> /*malloc-free function*/
 # include <stddef.h> /*size_t*/
 # include <limits.h> /*int max- min max*/
+# include <stdio.h>
+# include <fcntl.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -67,5 +70,37 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+// GET_NEXT_LINE
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
+char	*get_next_line(int fd);
+size_t	ft_strlen_gnl(const char *str, int c);
+char	*ft_strjoin_gnl(char *s1, const char *s2, size_t *n);
+char	*ft_strdup_gnl(const char *src);
+void	*ft_memmove_gnl(char *dest, const char *src, size_t n);
+char	*get_empty_line(char *stash, size_t *n);
+int		reading_line(int fd, char *stash, char **next_line, size_t *n);
+
+//FT_PRINTF
+# define BASE16_LOWER "0123456789abcdef"
+# define BASE16_UPPER "0123456789ABCDEF"
+# define BASE10 "0123456789"
+
+int		ft_printf(const char *str, ...) __attribute__ ((format (printf, 1, 2)));
+size_t	ft_strlen_pf(const char *str);
+void	ft_putnbr_base(int nbr, char *base, int *addr_count);
+void	ft_putchar_pf(char c, int *addr_count);
+void	ft_putstr_pf(char *str, int *addr_count);
+void	ft_unsigned_putnbr(unsigned long int nbr, char *base, int *addr_count);
+size_t	ft_strlenpercent(const char *str);
+void	ft_put_address(unsigned long int nbr, int *addr_count);
+void	ft_print_format(const char specifier, va_list arg, int *addr_count);
+void	ft_print_first_arg(const char *str, size_t *addr_i, int *addr_count);
+void	ft_print(int *addr_count, const char *str, size_t *addr_i, va_list arg);
+int		is_specifier(char c);
+void	check_percent(const char *str, int *addr_count, size_t *addr_i);
 
 #endif

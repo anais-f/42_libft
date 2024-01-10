@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-size_t	ft_strlen(const char *str, int c)
+size_t	ft_strlen_gnl(const char *str, int c)
 {
 	size_t	len;
 
@@ -28,7 +28,7 @@ size_t	ft_strlen(const char *str, int c)
 	return (len);
 }
 
-void	*ft_memmove(char *dest, const char *src, size_t n)
+void	*ft_memmove_gnl(char *dest, const char *src, size_t n)
 {
 	size_t	i;
 
@@ -56,7 +56,7 @@ void	*ft_memmove(char *dest, const char *src, size_t n)
 	return (dest);
 }
 
-char	*ft_strjoin(char *s1, const char *s2, size_t *n)
+char	*ft_strjoin_gnl(char *s1, const char *s2, size_t *n)
 {
 	char	*result;
 	size_t	i;
@@ -66,10 +66,10 @@ char	*ft_strjoin(char *s1, const char *s2, size_t *n)
 	j = -1;
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	result = malloc((ft_strlen(s1, '\0') + ft_strlen(s2, '\n') + 1));
+	result = malloc((ft_strlen_gnl(s1, '\0') + ft_strlen_gnl(s2, '\n') + 1));
 	if (result == 0)
 		return (free(s1), NULL);
-	ft_bzero(result, (ft_strlen(s1, '\0') + ft_strlen(s2, '\n') + 1));
+	ft_bzero(result, (ft_strlen_gnl(s1, '\0') + ft_strlen_gnl(s2, '\n') + 1));
 	while (s1[++i])
 		result[i] = s1[i];
 	while (s2[++j] && s2[j] != '\n')
@@ -83,13 +83,13 @@ char	*ft_strjoin(char *s1, const char *s2, size_t *n)
 	return (free(s1), result);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup_gnl(const char *src)
 {
 	char	*dest;
 	int		i;
 
 	i = 0;
-	dest = malloc((ft_strlen((char *)src, '\0') + 1));
+	dest = malloc((ft_strlen_gnl((char *)src, '\0') + 1));
 	if (dest == 0)
 		return (NULL);
 	while (src[i])

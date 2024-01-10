@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putchar(char c, int *addr_count)
+void	ft_putchar_pf(char c, int *addr_count)
 {
 	ssize_t	written;
 
@@ -25,7 +25,7 @@ void	ft_putchar(char c, int *addr_count)
 	*addr_count += written;
 }
 
-void	ft_putstr(char *str, int *addr_count)
+void	ft_putstr_pf(char *str, int *addr_count)
 {
 	ssize_t	count;
 	ssize_t	len;
@@ -33,7 +33,7 @@ void	ft_putstr(char *str, int *addr_count)
 
 	if (str == NULL)
 		*addr_count = write(1, "(null)", 6);
-	len = ft_strlen(str);
+	len = ft_strlen_pf(str);
 	if (len == -1)
 	{
 		*addr_count = -1;
@@ -53,7 +53,7 @@ void	ft_putstr(char *str, int *addr_count)
 	*addr_count += count;
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_pf(const char *str)
 {
 	size_t	len;
 
@@ -83,7 +83,8 @@ size_t	ft_strlenpercent(const char *str)
 	return (len);
 }
 
-int is_specifier(char c)
+int	is_specifier(char c)
 {
-    return (c == 'c' || c == 's' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == 'p' || c == '%');
+	return (c == 'c' || c == 's' || c == 'd' || c == 'i' || c == 'u'
+		|| c == 'x' || c == 'X' || c == 'p' || c == '%');
 }
