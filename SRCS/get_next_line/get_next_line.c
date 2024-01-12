@@ -23,7 +23,7 @@ char	*get_next_line(int fd)
 		return (ft_bzero(stash, BUFFER_SIZE + 1), NULL);
 	if (ft_strchr(stash, '\n'))
 		return (get_empty_line(stash, &n));
-	next_line = ft_strdup(stash);
+	next_line = ft_strdup_gnl(stash);
 	if (next_line == 0)
 		return (NULL);
 	if (reading_line(fd, stash, &next_line, &n) == -1)
@@ -37,7 +37,7 @@ char	*get_empty_line(char *stash, size_t *n)
 	char	*next_line;
 	char	*temp;
 
-	temp = ft_strdup("");
+	temp = ft_strdup_gnl("");
 	if (!temp)
 		return (NULL);
 	next_line = ft_strjoin_gnl(temp, stash, n);
@@ -70,16 +70,4 @@ int	reading_line(int fd, char *stash, char **next_line, size_t *n)
 		return (-1);
 	}
 	return (0);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		((char *)s)[i] = '\0';
-		i++;
-	}
 }
