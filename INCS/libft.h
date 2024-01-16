@@ -71,7 +71,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-// GET_NEXT_LINE
+/*GET_NEXT_LINE*/
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
@@ -84,7 +84,7 @@ void	*ft_memmove_gnl(char *dest, const char *src, size_t n);
 char	*get_empty_line(char *stash, size_t *n);
 int		reading_line(int fd, char *stash, char **next_line, size_t *n);
 
-//FT_PRINTF
+/*FT_PRINTF*/
 # define BASE16_LOWER "0123456789abcdef"
 # define BASE16_UPPER "0123456789ABCDEF"
 # define BASE10 "0123456789"
