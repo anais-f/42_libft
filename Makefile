@@ -20,7 +20,7 @@ SRCS_DIR= ./SRCS
 
 include source.mk
 
-SRCS:= $(SRCS:%=$(SRCS_DIR)/%)
+SRCS:= $(SRCS:%=$(SRCS_DIR)/%) \
 
 OBJS_DIR= ./OBJS
 
@@ -37,11 +37,9 @@ DEPS= $(OBJS:.o=.d)
 
 CC= cc
 
-CFLAGS= -Werror -Wextra -Wall -MMD -MP
+CFLAGS= -Werror -Wextra -Wall -g3 -MMD -MP
 
 RM= rm -rf
-
-CFLEAKS = -g3
 
 CFSIGSEV = -fsanitize=address
 
@@ -65,9 +63,6 @@ $(NAME): $(OBJS) $(INCS)
 $(OBJS_DIR)/%.o: %.c
 	@$(DIR_DUP)
 	$(CC) $(CFLAGS) -I$(INCS) -c $< -o $@
-
-valgrind:
-	$(MAKE) CFLAGS="$(CFLAGS) $(CFLEAKS)"
 
 fsanitize:
 	$(MAKE) CFLAGS="$(CFLAGS) $(CFSIGSEV)"

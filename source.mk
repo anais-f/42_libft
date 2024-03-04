@@ -42,6 +42,8 @@ SRCS_STRING=\
 		ft_substr.c \
 		ft_split.c \
 		ft_strchr.c \
+		ft_strcmp.c \
+		ft_split_whitespace.c \
 
 #----------MEMORY----------#
 SRCS_MEMORY=\
@@ -82,3 +84,5 @@ SRCS_PRINTF=\
 		ft_printf.c \
 		ft_printf_putnbr.c \
 		ft_printf_putstr.c \
+
+
