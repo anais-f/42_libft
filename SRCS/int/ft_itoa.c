@@ -55,5 +55,13 @@ char	*ft_itoa(int n)
 		digit--;
 	}
 	nbstr[digit - 1] = ln % 10 + 48;
+	nbstr[digit] = '\0';
 	return (nbstr);
 }
+
+/*int	main(void)
+ {
+ 	int	nb = 0;
+ 	printf("%s\n", ft_itoa(nb));
+ 	return (0);
+ }*/

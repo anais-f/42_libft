@@ -14,11 +14,7 @@
 static size_t	count_words(char *str);
 static void		ft_free(char **arr);
 static char		**fill_array(char const *s, char **arr);
-
-int	is_whitespace(char c)
-{
-	return (c == ' ' || c == '\0' || c == '\n' || c == '\t');
-}
+static int		is_whitespace(char c);
 
 char	**ft_split_whitespace(char const *s)
 {
@@ -47,7 +43,8 @@ static size_t	count_words(char *str)
 		return (count);
 	while (str[i])
 	{
-		if (!is_whitespace(str[i]) && (is_whitespace(str[i + 1]) || str[i + 1] == 0))
+		if (!is_whitespace(str[i]) && (is_whitespace(str[i + 1]) \
+			|| str[i + 1] == 0))
 			count++;
 		i++;
 	}
@@ -94,3 +91,8 @@ static char	**fill_array(char const *s, char **arr)
 	return (arr);
 }
 
+static int	is_whitespace(char c)
+{
+	return (c == ' ' || c == '\0' || c == '\t' || c == '\n' \
+			|| c == '\v' || c == '\r' || c == '\f');
+}
