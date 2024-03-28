@@ -84,5 +84,3 @@ SRCS_PRINTF=\
 		ft_printf.c \
 		ft_printf_putnbr.c \
 		ft_printf_putstr.c \
-
-
