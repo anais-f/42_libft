@@ -6,11 +6,12 @@
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:49:30 by anfichet          #+#    #+#             */
-/*   Updated: 2023/11/25 18:46:35 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2024/11/06 10:21:58 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <errno.h>
 
 int	ft_atoi(const char *str)
 {
@@ -31,12 +32,12 @@ int	ft_atoi(const char *str)
 	{
 		if (((nb * 10 + str[i] - '0') / 10) != nb)
 		{
+			errno = ERANGE;
 			if (sign < 0)
 				return ((int)LONG_MIN);
 			return ((int)LONG_MAX);
 		}
-		nb = nb * 10 + str[i] - '0';
-		i++;
+		nb = nb * 10 + str[i++] - '0';
 	}
 	return (nb * sign);
 }

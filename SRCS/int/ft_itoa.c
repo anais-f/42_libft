@@ -6,7 +6,7 @@
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:08:11 by anfichet          #+#    #+#             */
-/*   Updated: 2023/11/25 18:53:45 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2024/11/06 10:20:59 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ char	*ft_itoa(int n)
 		digit--;
 	}
 	nbstr[digit - 1] = ln % 10 + 48;
-	nbstr[digit] = '\0';
 	return (nbstr);
 }
 
